@@ -4,7 +4,7 @@
 ## Запуск и установка:
 
 <ul>
-  <li>В терминале перейдите в <code>backend</code>:</li>
+  <li>После клонирования репы перейдите в папку: <code>backend</code>:</li>
 </ul>
 
 <code>cd backend</code>
