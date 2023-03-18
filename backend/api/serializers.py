@@ -1,10 +1,15 @@
-# Cards - отображение главных 6 проектов на HomePage
 from rest_framework import serializers
 
-from .models import Audd
+from .models import SongData, Discogs
 
 
-class AuddSerializer(serializers.ModelSerializer):
+class TrackInfoSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Audd
-        fields = ('id', 'name', 'artist', 'genre', 'style', 'release', 'text')
+        model = SongData
+        fields = '__all__'
+
+
+class DiscogsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Discogs
+        fields = '__all__'

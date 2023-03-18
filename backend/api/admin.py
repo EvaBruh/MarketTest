@@ -1,16 +1,27 @@
 from django.contrib import admin
 
-from .models import Audd
+from .models import SongData, Discogs
 
 
 class AuddAdmin(admin.ModelAdmin):
 
     class Meta:
-        model = Audd
+        model = SongData
 
-    list_display = ('id', 'name', 'artist', 'genre', 'style', 'release', 'text')
-    list_display_links = ('id', 'name', 'artist', 'genre', 'style', 'release', 'text')
-    search_fields = ('id', 'name', 'artist', 'genre', 'style', 'release', 'text')
+    list_display = ('id', 'title', 'artist', 'genre', 'style', 'release_date', 'lyrics')
+    list_display_links = ('id', 'title', 'artist', 'genre', 'style', 'release_date', 'lyrics')
+    search_fields = ('id', 'title', 'artist', 'genre', 'style', 'release_date', 'lyrics')
 
 
-admin.site.register(Audd, AuddAdmin)
+class DiscogsAdmin(admin.ModelAdmin):
+
+    class Meta:
+        model = Discogs
+
+    list_display = ('id', 'title', 'artist', 'year', 'label', 'catno', 'format')
+    list_display_links = ('id', 'title', 'artist', 'year', 'label', 'catno', 'format')
+    search_fields = ('id', 'title', 'artist', 'year', 'label', 'catno', 'format')
+
+
+admin.site.register(SongData, AuddAdmin)
+admin.site.register(Discogs, DiscogsAdmin)
