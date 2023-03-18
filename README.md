@@ -4,7 +4,7 @@
 ## Запуск и установка:
 
 <ul>
-  <li>В терминале перейдите в <code>backend</code>:</li>
+  <li>После клонирования репы перейдите в папку: <code>backend</code>:</li>
 </ul>
 
 <code>cd backend</code>
@@ -23,9 +23,8 @@
   <li><code>cd ..</code></li>
   <li><code>cd frontend</code></li>
   
-<li>Установите React:</li>
-<code>npx create-react-app my-app</code>
-<li>Перейдите в папку <code>my-app</code> и запустите сервер разработки:</li>
+<li>React:</li>
+<li>Перейдите в папку <code>my-app</code> установите зависимости и запустите сервер разработки:</li>
 
   <li><code>cd my-app</code></li>
   <li><code>npm install</code></li>
