@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router-dom";
 
 import AUDD from "./components/AUDD";
 
+
 import './App.css';
 
 const App = () => {
@@ -10,6 +11,7 @@ const App = () => {
   return (
     <Routes>
         <Route index element={<AUDD />} />
+
     </Routes>
   )
 }

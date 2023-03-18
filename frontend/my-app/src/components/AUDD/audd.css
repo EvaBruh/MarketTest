@@ -1,0 +1,29 @@
+.TrackInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.TrackInfo h5 {
+  margin-top: 20px;
+}
+
+.TrackInfo img {
+  max-width: 300px;
+}
+
+.TrackInfo_buttons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.TrackInfo_buttons input[type="file"] {
+  margin-right: 10px;
+}
+
+.TrackInfo p,
+.TrackInfo li {
+    margin-bottom:10px
+}
