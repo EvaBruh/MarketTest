@@ -200,29 +200,34 @@ class DiscogsApi(mixins.ListModelMixin, viewsets.GenericViewSet):
          #extract the first image uri.
         image = release['images'][0]['uri']
 
+
+
         # Сохраняем таблицу БД с данными discogs, модель Discogs
-        for release in releases['results']:
-            discogs_data = Discogs(title=release.get('title'), artist=artist, year=release.get('year'),
-                                   label=', '.join(release.get("label", ["Unknown"])),
-                                   catno=release.get("catno", "Unknown"),
-                                   format=', '.join(release.get("format", ["Unknown"])))
-            # Проверка полей
-            discogs_data.full_clean()
-            try:
-                discogs_data.save()
-                print('saved base discogs')
-            except:
-                print('failed save')
 
-            serializer = DiscogsSerializer(discogs_data)
-            return Response(serializer.data)
+        discogs_data, created = Discogs.objects.get_or_create(title=release.get('title'),
+                                                              artist=artist,
+                                                              defaults={
+                                                                  'year': release.get('year'),
+                                                                  'label': ', '.join(release.get("label", ["Unknown"])),
+                                                                  'catno': release.get("catno", "Unknown"),
+                                                                  'format': ', '.join(release.get("format", ["Unknown"])),
+                                                              })
+        # Проверка полей
+        discogs_data.full_clean()
+        if created:
+            print('Created new Discogs object')
+        else:
+            print('Retrieved existing Discogs object')
 
-        try:
-            urlretrieve(image, image.split('/')[-1])
-        except Exception as e:
-            sys.exit(f'Unable to download image {image}, error {e}')
+        serializer = DiscogsSerializer(discogs_data)
+        return Response(serializer.data)
+
+        #try:
+        #    urlretrieve(image, image.split('/')[-1])
+        #except Exception as e:
+        #    sys.exit(f'Unable to download image {image}, error {e}')
 
         print(' == API image request ==')
         print(f'    * response status      = {resp["status"]}')
-        print(f'    * saving image to disk = {image.split("/")[-1]}')
+        #print(f'    * saving image to disk = {image.split("/")[-1]}')
         return Response({'error': 'Failed to discogs song'})
